@@ -1,5 +1,5 @@
 
-<row class="clearfix selectorrow">
+<row id="hotel-selector" class="clearfix selectorrow">
 	<div class="col-md-3 col-sm-12">
 		<h7>Hotels</h7>
 	</div>
@@ -10,9 +10,9 @@
 		    <span class="caret"></span>
 		  </button>
 		  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
-		  	{% for hotel in hotels %}
+		  {#	{% for hotel in hotels %}
 		      <li><a href="#">{{hotel.name}}</a></li>
-				{% endfor %}
+				{% endfor %} #}
 		  </ul>
 		</div>
 	</div>
@@ -20,7 +20,7 @@
 		<button type="button" class="btn btn-danger btn-xs btn-circle">+</button>
 	</div>
 </row>
-<row class="clearfix selectorrow">
+<row id="restaurant-selector" class="clearfix selectorrow">
 	<div class="col-md-3">
 		<h7>Restaurants</h7>
 	</div>
@@ -31,9 +31,9 @@
 		    <span class="caret"></span>
 		  </button>
 		  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-		  	{% for restaurant in restaurants %}
+		  {#	{% for restaurant in restaurants %}
 		      <li><a href="#">{{restaurant.name}}</a></li>
-				{% endfor %}
+				{% endfor %} #}
 		  </ul>
 		</div>
 	</div>
@@ -41,7 +41,7 @@
 		<button type="button" class="btn btn-danger btn-xs btn-circle">+</button>
 	</div>
 </row>
-<row class="clearfix">
+<row id="activity-selector" class="clearfix">
 	<div class="col-md-3">
 		<h7>Activities</h7>
 	</div>
@@ -52,9 +52,9 @@
 		    <span class="caret"></span>
 		  </button>
 		  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-		  	{% for activity in activities %}
+		  {#	{% for activity in activities %}
 		      <li><a href="#">{{activity.name}}</a></li>
-				{% endfor %}
+				{% endfor %} #}
 		  </ul>
 		</div>
 	</div>

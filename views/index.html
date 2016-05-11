@@ -42,7 +42,7 @@
       <div class="row">
         <!-- <h1>Day 2</h1> -->
       </div>
-      <div class="row">
+      <div id="itinerary" class="row">
         {% include "./itinerary.html" %}
       </div>
     </div>
@@ -55,28 +55,109 @@
 
 <script>
 $(document).ready(function(){
-//all listens go here
+  //create selector dropdowns
+  var hotelSelector = $('#hotel-selector ul');
+  hotels.forEach( function(hotel) {
+    hotelSelector.append(`<li data-value-id=${hotel.id}><a href="#">${hotel.name}</a></li>`);
+  })
+  var restaurantSelector = $('#restaurant-selector ul');
+  restaurants.forEach( function(restaurant) {
+    restaurantSelector.append(`<li data-value-id=${restaurant.id}><a href="#">${restaurant.name}</a></li>`);
+  })
+  var activitySelector = $('#activity-selector ul');
+  activities.forEach( function(activity) {
+    activitySelector.append(`<li data-value-id=${activity.id}><a href="#">${activity.name}</a></li>`);
+  })
+  //all listens go here
 
-console.log('ready');
+  console.log('ready');
 
-$('#selector .btn-circle').click(function(e){
-  console.log($(this));
-  console.log('click');
+  console.log($('#hotel-itinerary'));
 
-  // append new html element to itinerary with value of 
+//add something to the itinerary
+  $('#selector .btn-circle').click(function(e){
+    var dropdownElement = $(this).parent().prev().find('button').first();
+    var name = dropdownElement.text();
+    var id = dropdownElement.attr('data-value-id');
+    //console.log(name)
+    var type = $(this).closest('row')[0].id.slice(0,-9);
+    console.log(id, name, type);
+    var itinerary = $('#'+type+'-itinerary > div > ul');
+    itinerary.append(addToItinerary(name,id));
+    // itinerary.last().click(function(e){
+    //   deleteFromItinerary(e.toElement.closest('row'));
+    // })
+  });
 
+//select something from the selector dropdown menu
+  $('#selector ul.dropdown-menu li').click(function(e){
+      $this = $(this); 
+      $this.parent().prev('button').attr('data-value-id',$this.attr('data-value-id'));
+      $this.parent().prev('button').text($this.text());
+  });
+
+//delete an entry from the itinerary
+  $("#itinerary [name='itinerary-delete']").click(function(e){
+    console.dir(e.toElement);
+    deleteFromItinerary(e.toElement.closest('row'));
+  })
+
+//itinerary template
+  function addToItinerary(name,id){
+    if(!id) throw "Error";
+    var newRow = $(document.createElement('row') )
+
+    newRow.attr("data-value-id",id)
+    var innerHtml = `<div class="col-md-8">
+                        ${name}
+                      </div>
+                      <div class="col-md-4">
+                        <button name="itinerary-delete" type="button" class="btn btn-danger btn-xs btn-circle">X</button>
+                      </div>`
+    newRow.html(innerHtml);
+    newRow.find('button').click(function(e){
+      deleteFromItinerary(e.toElement.closest('row'));
+    })
+    return newRow;
+  }
+
+  //delete an entry from the itinerary
+  function deleteFromItinerary(item){
+    item.remove();
+  }
 
 
 });
 
-
-$('#selector ul.dropdown-menu li').click(function(e){
-    $this = $(this); 
-    $this.parent().prev('button').text($this.text());
-});
-
-
-});
+</script>
+<script>
+//lists of activities and places
+  {% autoescape false %}
+  var hotels = {{ hotels | json }};
+  var restaurants = {{ restaurants | json }};
+  var activities = {{ activities | json }};
+  {% endautoescape %}
+  var itinerary = {
+    day1:
+      {
+        hotels: [],
+        restaurants: [],
+        activities: []
+      },
+    day2:
+      {
+        hotels: [],
+        restaurants: [],
+        activities: []
+      },
+    day3:
+      {
+        hotels: [],
+        restaurants: [],
+        activities: []
+      }
+  }
+  console.log(hotels);
 
 </script>
 </html>
