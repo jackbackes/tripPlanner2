@@ -11,6 +11,8 @@ var indexRouter = express.Router(require('./routes')(app));
 var conString = 'postgres://postgres:password@localhost:5432/tripplanner';
 var client = new pg.Client(conString);
 
+
+
 // templating boilerplate setup
 app.set('views', path.join(__dirname, '/views')); // where to find the views
 app.set('view engine', 'html'); // what file extension do our templates have
@@ -32,6 +34,11 @@ client.connect();
 
 // the typical way to use express static middleware.
 app.use(express.static(path.join(__dirname, '/public')));
+app.use('/bower_components', express.static(path.join(__dirname + '/bower_components')));
+require('wiredep')({
+  src: './views/index.html',
+});
+
 app.use('/bootstrap', express.static(path.join(__dirname, '/node_modules/bootstrap/dist')));
 app.use('/jquery', express.static(path.join(__dirname, '/node_modules/jquery/dist')));
 

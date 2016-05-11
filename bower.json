@@ -1,0 +1,24 @@
+{
+  "name": "tripplanner",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "thejohnbackes <jbackes@thisismotive.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/jonrim/tripPlanner",
+  "moduleType": [
+    "es6",
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "magic": "^1.1.0"
+  }
+}

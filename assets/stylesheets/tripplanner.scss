@@ -10,6 +10,9 @@ $sub-text: 8vh;
 
 
 #bootstrap-overrides {
+	.zeroheight {
+		height: 0px !important;
+	}
 	.dropdown-toggle {
 		background-color: $tertiary-color;
 		border: none;
@@ -66,6 +69,7 @@ $sub-text: 8vh;
 					width: 20vw;
 					padding-bottom: $sub-text;
 					display: block;
+					font-style: italic;
 				}
 			}
 			&-subbrand {

@@ -1,3 +1,6 @@
+#bootstrap-overrides .zeroheight {
+  height: 0px !important; }
+
 #bootstrap-overrides .dropdown-toggle {
   background-color: #a48cd9;
   border: none; }
@@ -46,7 +49,8 @@
     padding-top: 60vh;
     width: 20vw;
     padding-bottom: 8vh;
-    display: block; }
+    display: block;
+    font-style: italic; }
     #bootstrap-overrides .navbar-brand-start a {
       color: #faed26; }
   #bootstrap-overrides .navbar-subbrand {

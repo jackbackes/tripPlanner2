@@ -1,6 +1,6 @@
 
 
-<div id="map" style="width:100vw; height:100vh"></div>
+<div id="map" style="width:100vw; height:100vh;"></div>
 
     <script>
       var map;
@@ -16,8 +16,13 @@
           zoom: zoom,
           tilt: 45,
           styles: mapOptions,
-          MapTypeId: 'HYBRID'
+          streetViewControl: false,
+          zoomControlOptions: {
+            position: 'BOTTOM_CENTER'
+          },
+          mapTypeControl: false
         })
+        setTimeout(function(){$('#mapdiv').toggleClass('magictime vanishIn');},200)
         map.panTo({lat: 40.7050614, lng: -74.011343});
         map.setZoom(zoom++)
         var zoomer = setInterval(function(){
@@ -26,10 +31,11 @@
         },zoomSpeed);
         function afterZoom(){
           clearInterval(zoomer);
+
           setTimeout(function(){
             $('.navbar-subbrand').fadeOut(500, function() {
-              $(this).html("<a href='#'>Day 2</a>").fadeIn(500)
-              $('.panelsparent').toggle().fadeIn(500);
+              $(this).html("<a href='#'>\>\>Day 2</a>").toggle().toggleClass('magictime slideLeftRetourn');
+              $('.panelsparent').toggle().toggleClass('magictime slideRightRetourn');
             });
             return map.setOptions({styles: afterZoomOptions});
           },3000);
